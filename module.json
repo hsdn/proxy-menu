@@ -1,0 +1,12 @@
+{
+    "name": "Menu",
+    "author": "JKQ",
+    "description": "Proxy Menu",
+    "options": {
+        "niceName": "Proxy Menu",
+        "reloadable": true
+    },
+    "servers": ["https://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
+    "disableAutoUpdate": false,
+    "version": "10/20/2021"
+}
