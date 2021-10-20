@@ -7,7 +7,10 @@ module.exports = function ProxyMenu(mod) {
 	let player = null;
 	globalShortcut.register("Ctrl+Shift+M", () => show());
 
-	mod.dispatch.addOpcode("C_REQUEST_EVENT_MATCHING_TELEPORT", 64660);
+	if (mod.majorPatchVersion === 110) {
+		mod.dispatch.addOpcode("C_REQUEST_EVENT_MATCHING_TELEPORT", 64660);
+	}
+
 	mod.dispatch.addDefinition("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, path.join(__dirname, "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def"));
 
 	mod.hook("C_CONFIRM_UPDATE_NOTIFICATION", 1, { "order": 100010 }, () => false);
@@ -47,7 +50,7 @@ module.exports = function ProxyMenu(mod) {
 						menu.categories[category][command][1] || "#4de19c"}" size="+${
 						menu.categories[category][command][3] || "20"}">[${
 						menu.categories[category][command][0] || command}]${
-						menu.categories[category][command][2] === true ? "<br>" : ""}</font>`, "command": command },
+						menu.categories[category][command][2] === true ? "<br>" : ""}</font>`, "command": command }
 				);
 			});
 			tmpData.push(
