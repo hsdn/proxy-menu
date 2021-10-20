@@ -6,7 +6,7 @@
         "niceName": "Proxy Menu",
         "reloadable": true
     },
-    "servers": ["https://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
+    "servers": ["http://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
     "disableAutoUpdate": false,
     "version": "10/20/2021"
 }
