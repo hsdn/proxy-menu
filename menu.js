@@ -22,7 +22,8 @@ module.exports = {
 	"categories": {
 		"Основное": {
 			"bank": ["Банк", c.lp],
-			"pbank": ["Персональное хранилище", c.lp],
+			"pbank": ["Перс. хранилище", c.lp],
+			"cbank": ["Костюмы", c.lp],
 			"ab": ["Автобанк", c.p],
 			"invg": ["Прием в ги", c.lg, true],
 			"broker": ["Брокер", c.lg],
