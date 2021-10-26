@@ -1,17 +1,23 @@
+const PATCH_VERSION = 110;
+const C_REQUEST_EVENT_MATCHING_TELEPORT = 64660;
+
 const globalShortcut = global.TeraProxy.GUIMode ? require("electron").globalShortcut : null;
-const path = require("path");
 
 module.exports = function ProxyMenu(mod) {
 	const COMMAND = "m";
 	const menu = require("./menu");
 	let player = null;
-	globalShortcut.register("Ctrl+Shift+M", () => show());
 
-	if (mod.majorPatchVersion === 110) {
-		mod.dispatch.addOpcode("C_REQUEST_EVENT_MATCHING_TELEPORT", 64660);
+	if (mod.majorPatchVersion === PATCH_VERSION) {
+		mod.dispatch.addOpcode("C_REQUEST_EVENT_MATCHING_TELEPORT", C_REQUEST_EVENT_MATCHING_TELEPORT);
+		mod.dispatch.addDefinition("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
+			["unk1", "uint32"],
+			["quest", "uint32"],
+			["instance", "uint32"],
+			["unk2", "uint32"],
+			["unk3", "uint32"]
+		]);
 	}
-
-	mod.dispatch.addDefinition("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, path.join(__dirname, "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def"));
 
 	mod.hook("C_CONFIRM_UPDATE_NOTIFICATION", 1, { "order": 100010 }, () => false);
 	mod.hook("C_ADMIN", 1, { "order": 100010, "filter": { "fake": false, "silenced": false, "modified": null } }, event => {
@@ -33,7 +39,21 @@ module.exports = function ProxyMenu(mod) {
 	mod.command.add(COMMAND, {
 		"$none": () => show(),
 		"use": id => useItem(id),
-		"et": (quest, instance) => eventTeleport(quest, instance)
+		"et": (quest, instance) => eventTeleport(quest, instance),
+		"map": () => {
+			mod.send("S_REQUEST_CONTRACT", 2, {
+				"senderId": mod.game.me.gameId,
+				"recipientId": "0",
+				"type": 54,
+				"id": 2591928,
+				"serverId": 40,
+				"unk3": 0,
+				"time": 0,
+				"senderName": "",
+				"recipientName": "",
+				"data": Buffer.alloc(0)
+			});
+		}
 	});
 
 	function show() {
@@ -101,6 +121,8 @@ module.exports = function ProxyMenu(mod) {
 		}
 		mod.send("S_ANNOUNCE_UPDATE_NOTIFICATION", 1, { "id": 0, title, body });
 	}
+
+	globalShortcut.register("Ctrl+Shift+M", () => show());
 
 	this.destructor = () => {
 		player = null;

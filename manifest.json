@@ -1,17 +1,16 @@
 {
     "files": {
-        "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def": "eb584125032d9d3be2f1bb93d885e61bea4616768233731470a10df2d461c552",
-        "index.js": "f482fbd051dac14f1cc7cb6b0ab40f925be04ea420b5ad5f02967c157793f611",
-        "menu.js": "4c922d57a75926d3928676f0343db394f2f784f6c4528118303281a08eec2615",
-        "module.json": "8d6ffbd7f1400a6395792c05f4958ad43efe63cd0a19715ade8d05b911e512fb"
+        "index.js": "8dfe3865dbeb37487ae6b0f5e6984646de5e0f95dc74f9afb26b5d7420fa5d14",
+        "menu.js": "162e812755e9821a8217fc144c748e11eb0eb2de0c38a2abb2041d57be0ddfe7",
+        "module.json": "d73d4053c6698afd6182b8cd3b6c5213d1cbceef9f10142b221f32e37b02c229"
     },
     "defs": {
         "C_ADMIN": 1,
         "C_CONFIRM_UPDATE_NOTIFICATION": 1,
         "C_PLAYER_LOCATION": 5,
-        "C_REQUEST_EVENT_MATCHING_TELEPORT": 64660,
         "C_USE_ITEM": 3,
         "S_ANNOUNCE_UPDATE_NOTIFICATION": 1,
+        "S_REQUEST_CONTRACT": 2,
         "S_SPAWN_ME": 3
     }
 }
