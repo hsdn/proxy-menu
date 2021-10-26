@@ -6,4 +6,4 @@ Custom in-game menu for Proxy/Toolbox commands.
 
 Toolbox(/8) | Command description
 --- | ---
-**menu** | Open menu (also you can use **Ctrl+Shift+M**).
+**m** | Open menu (also you can use **Ctrl+Shift+M**).
