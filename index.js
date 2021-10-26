@@ -1,23 +1,32 @@
-const PATCH_VERSION = 110;
-const C_REQUEST_EVENT_MATCHING_TELEPORT = 64660;
+const OPCODES = {
+	"C_REQUEST_EVENT_MATCHING_TELEPORT": {
+		"385362": 64660 // GF 110.02
+	}
+};
 
 const globalShortcut = global.TeraProxy.GUIMode ? require("electron").globalShortcut : null;
+
+function addOpcodeAndDefinition(mod, name, version = null, definition = null) {
+	if (OPCODES[name] !== undefined && OPCODES[name][mod.dispatch.protocolVersion] !== undefined) {
+		mod.dispatch.addOpcode(name, OPCODES[name][mod.dispatch.protocolVersion]);
+	}
+	if (version !== null && definition !== null) {
+		mod.dispatch.addDefinition(name, version, definition);
+	}
+}
 
 module.exports = function ProxyMenu(mod) {
 	const COMMAND = "m";
 	const menu = require("./menu");
 	let player = null;
 
-	if (mod.majorPatchVersion === PATCH_VERSION) {
-		mod.dispatch.addOpcode("C_REQUEST_EVENT_MATCHING_TELEPORT", C_REQUEST_EVENT_MATCHING_TELEPORT);
-		mod.dispatch.addDefinition("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
-			["unk1", "uint32"],
-			["quest", "uint32"],
-			["instance", "uint32"],
-			["unk2", "uint32"],
-			["unk3", "uint32"]
-		]);
-	}
+	addOpcodeAndDefinition(mod, "C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
+		["unk1", "uint32"],
+		["quest", "uint32"],
+		["instance", "uint32"],
+		["unk2", "uint32"],
+		["unk3", "uint32"]
+	]);
 
 	mod.hook("C_CONFIRM_UPDATE_NOTIFICATION", 1, { "order": 100010 }, () => false);
 	mod.hook("C_ADMIN", 1, { "order": 100010, "filter": { "fake": false, "silenced": false, "modified": null } }, event => {
@@ -31,8 +40,8 @@ module.exports = function ProxyMenu(mod) {
 		return false;
 	});
 
-	mod.hook("S_SPAWN_ME", 3, event => player = event);
-	mod.hook("C_PLAYER_LOCATION", 5, event => player = event);
+	mod.hook("S_SPAWN_ME", 3, event => { player = event; });
+	mod.hook("C_PLAYER_LOCATION", 5, event => { player = event; });
 
 	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => console.log(event));
 
