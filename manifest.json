@@ -1,8 +1,8 @@
 {
     "files": {
         "index.js": "119bd423f60a2e7a720f67eb982e5a6d60e5a79348af62accd2ec094e66a0b1a",
-        "menu.js": "162e812755e9821a8217fc144c748e11eb0eb2de0c38a2abb2041d57be0ddfe7",
-        "module.json": "d73d4053c6698afd6182b8cd3b6c5213d1cbceef9f10142b221f32e37b02c229"
+        "menu.js": "9774ba3355596b2f93afff5a40fe39cce6bcaa82f4f12a2d1ee447604a334af4",
+        "module.json": "1134bf1f2fcb53504750e52cc6fa3359b429ade15a4a4e1a41fddebc68fe827c"
     },
     "defs": {
         "C_ADMIN": 1,
