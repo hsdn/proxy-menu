@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, comma-dangle */
+/* eslint-disable quote-props,  comma-dangle */
 "use strict";
 
 const c = {
@@ -18,69 +18,75 @@ const c = {
 	"lg": "#5bc0be", // light green
 };
 
+// Available keys:
+//   name    -- Name of entry
+//   color   -- Set color of entry text
+//   nl      -- Enable/disable add new line after entry
+//   keybind -- Set a key bind for command
+
 module.exports = {
 	"categories": {
 		"Основное": {
-			"bank": ["Банк", c.lp],
-			"pbank": ["Перс. хранилище", c.lp],
-			"cbank": ["Костюмы", c.lp],
-			"ab": ["Автобанк", c.p],
-			"invg": ["Прием в ги", c.lg, true],
-			"broker": ["Брокер", c.lg],
-			"gbank": ["Банк гильдии", c.g],
-			"store": ["Торговец", c.g],
-			"sstore": ["Магазин редкостей", c.g, true],
-			"tp to": ["Телепорт", c.b],
-			"ess": ["Автоюз банки", c.y],
-			"loot auto": ["Автолут", c.g],
-			"cc": ["Антиопрокид", c.g],
-			"translate send": ["Перевод", c.lb],
+			"bank": { name: "Банк", color: c.lp },
+			"pbank": { name: "Перс. хранилище", color: c.lp },
+			"cbank": { name: "Костюмы", color: c.lp },
+			"ab": { name: "Автобанк", color: c.p },
+			"invg": { name: "Прием в ги", color: c.lg, nl: true },
+			"broker": { name: "Брокер", color: c.lg },
+			"gbank": { name: "Банк гильдии", color: c.g },
+			"store": { name: "Торговец", color: c.g },
+			"sstore": { name: "Магазин редкостей", color: c.g, nl: true },
+			"tp to": { name: "Телепорт", color: c.b },
+			"ess": { name: "Автоюз банки", color: c.y },
+			"loot auto": { name: "Автолут", color: c.g },
+			"cc": { name: "Антиопрокид", color: c.g },
+			"translate send": { name: "Перевод", color: c.lb },
 		},
 		"Гоблины эксодора (монеты странствий)": {
-			"tr": ["Время спавна", c.lb],
-			"tr scan": ["Поиск", c.o],
-			"tr stop": ["Стоп", c.r],
+			"tr": { name: "Время спавна", color: c.lb },
+			"tr scan": { name: "Поиск", color: c.o },
+			"tr stop": { name: "Стоп", color: c.r },
 		},
 		"Тайные торговцы": {
-			"mm": ["Время спавна", c.lb],
-			"mm scan": ["Поиск", c.o],
-			"mm stop": ["Стоп", c.r],
+			"mm": { name: "Время спавна", color: c.lb },
+			"mm scan": { name: "Поиск", color: c.o },
+			"mm stop": { name: "Стоп", color: c.r },
 		},
 		"Телепорт в город": {
-			"m et 2188 3205": ["Эксодор", c.o],
-			"m et 2140 9780": ["Велика", c.o],
-			"m et 98311 9069": ["Верхний Дозор", c.o],
-			"m et 2321 13": ["Остров Зари", c.o, true],
-			"m use 148": ["Блеклый камень", c.lg],
-			"m use 145": ["Трия", c.lg, true],
-			"m use 144": ["Фронтера"],
-			"m use 139": ["Тулуфан"],
-			"m use 147": ["Акарум"],
-			"m use 149": ["Эленея", c.g, true],
-			"m use 154": ["Аванпост следопытов"],
-			"m use 442": ["Территория архива"],
+			"m et 2188 3205": { name: "Эксодор", color: c.o },
+			"m et 2140 9780": { name: "Велика", color: c.o },
+			"m et 98311 9069": { name: "Верхний Дозор", color: c.o },
+			"m et 2321 13": { name: "Остров Зари", color: c.o, nl: true },
+			"m use 148": { name: "Блеклый камень", color: c.lg },
+			"m use 145": { name: "Трия", color: c.lg, nl: true },
+			"m use 144": { name: "Фронтера" },
+			"m use 139": { name: "Тулуфан" },
+			"m use 147": { name: "Акарум" },
+			"m use 149": { name: "Эленея", color: c.g, nl: true },
+			"m use 154": { name: "Аванпост следопытов" },
+			"m use 442": { name: "Территория архива" },
 		},
 		"Неуязвимость": {
-			"inv s": ["Статус", c.lb],
-			"inv h 70": ["70", c.y],
-			"inv h 150": ["150", c.y],
-			"inv h 200": ["200", c.y],
-			"inv h 300": ["300", c.y],
-			"inv i": ["Включить/Выключить", c.r],
+			"inv s": { name: "Статус", color: c.lb },
+			"inv h 70": { name: "70", color: c.y },
+			"inv h 150": { name: "150", color: c.y },
+			"inv h 200": { name: "200", color: c.y },
+			"inv h 300": { name: "300", color: c.y },
+			"inv i": { name: "Включить/Выключить", color: c.r },
 		},
 		"Гайд (tera-guide)": {
-			"guide ui": ["Настройка"],
-			"guide stream": ["Стрим", c.y],
-			"guide voice": ["Голос", c.y],
-			"guide spawnObject": ["Объекты", c.y],
-			"guide debug ui": ["Отладка", c.b],
+			"guide ui": { name: "Настройка" },
+			"guide stream": { name: "Стрим", color: c.y },
+			"guide voice": { name: "Голос", color: c.y },
+			"guide spawnObject": { name: "Объекты", color: c.y },
+			"guide debug ui": { name: "Отладка", color: c.b },
 		},
 		"Разное": {
-			"tp blink 100": ["Блинк вперед"],
-			"tp up 250": ["Блинк вверх"],
-			"tp down 250": ["Блинк вниз"],
-			"tp drop -1": ["Убить себя", c.r],
-			"gat ui": ["Сбор", c.lb],
+			"tp blink 100": { name: "Блинк вперед", keybind: "ctrl+shift+b" },
+			"tp up 250": { name: "Блинк вверх" },
+			"tp down 250": { name: "Блинк вниз" },
+			"tp drop -1": { name: "Убить себя", color: c.r },
+			"gat ui": { name: "Сбор", color: c.lb },
 		},
 	}
 };

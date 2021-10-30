@@ -19,7 +19,24 @@ function addOpcodeAndDefinition(mod, name, version = null, definition = null) {
 module.exports = function ProxyMenu(mod) {
 	const COMMAND = "m";
 	const menu = require("./menu");
+	const keybinds = new Set();
 	let player = null;
+
+	Object.keys(menu.categories).forEach(category =>
+		Object.keys(menu.categories[category]).forEach(command => {
+			if (menu.categories[category][command].keybind) {
+				try {
+					globalShortcut.register(menu.categories[category][command].keybind, () =>
+						mod.command.exec(command)
+					);
+					keybinds.add(menu.categories[category][command].keybind);
+				} catch (e) {}
+			}
+		})
+	);
+
+	keybinds.add("Ctrl+Shift+M");
+	globalShortcut.register("Ctrl+Shift+M", () => show());
 
 	addOpcodeAndDefinition(mod, "C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
 		["unk1", "uint32"],
@@ -44,6 +61,7 @@ module.exports = function ProxyMenu(mod) {
 	mod.hook("S_SPAWN_ME", 3, event => { player = event; });
 	mod.hook("C_PLAYER_LOCATION", 5, event => { player = event; });
 
+	// debug
 	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => console.log(event));
 
 	mod.command.add(COMMAND, {
@@ -74,13 +92,14 @@ module.exports = function ProxyMenu(mod) {
 				{ "text": "<br>" }
 			);
 			Object.keys(menu.categories[category]).forEach(command => {
+				const menuEntry = menu.categories[category][command];
 				tmpData.push(
 					{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 					{ "text": `<font color="${
-						menu.categories[category][command][1] || "#4de19c"}" size="+${
-						menu.categories[category][command][3] || "20"}">[${
-						menu.categories[category][command][0] || command}]${
-						menu.categories[category][command][2] === true ? "<br>" : ""}</font>`, "command": command }
+						menuEntry.color || "#4de19c"}" size="+${
+						menuEntry.size || "20"}">[${
+						menuEntry.name || command}]${
+						menuEntry.nl === true ? "<br>" : ""}</font>`, "command": command }
 				);
 			});
 			tmpData.push(
@@ -132,11 +151,9 @@ module.exports = function ProxyMenu(mod) {
 		mod.send("S_ANNOUNCE_UPDATE_NOTIFICATION", 1, { "id": 0, title, body });
 	}
 
-	globalShortcut.register("Ctrl+Shift+M", () => show());
-
 	this.destructor = () => {
 		player = null;
-		globalShortcut.unregister("Ctrl+Shift+M");
+		keybinds.forEach(keybind => globalShortcut.unregister(keybind));
 		mod.command.remove(["m"]);
 	};
 };
