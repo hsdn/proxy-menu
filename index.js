@@ -93,14 +93,24 @@ module.exports = function ProxyMenu(mod) {
 			);
 			Object.keys(menu.categories[category]).forEach(command => {
 				const menuEntry = menu.categories[category][command];
-				tmpData.push(
-					{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
-					{ "text": `<font color="${
-						menuEntry.color || "#4de19c"}" size="+${
-						menuEntry.size || "20"}">[${
-						menuEntry.name || command}]${
-						menuEntry.nl === true ? "<br>" : ""}</font>`, "command": command }
-				);
+				if (mod.command.base.hooks.has(command.split(" ")[0])) {
+					tmpData.push(
+						{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
+						{ "text": `<font color="${
+							menuEntry.color || "#4de19c"}" size="+${
+							menuEntry.size || "20"}">[${
+							menuEntry.name || command}]${
+							menuEntry.nl === true ? "<br>" : ""}</font>`, "command": command }
+					);
+				} else {
+					tmpData.push(
+						{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
+						{ "text": `<font color="#777777" size="+${
+							menuEntry.size || "20"}">[${
+							menuEntry.name || command}]${
+							menuEntry.nl === true ? "<br>" : ""}</font>` }
+					);
+				}
 			});
 			tmpData.push(
 				{ "text": "<font size=\"+2\"><br><br></font>" }
