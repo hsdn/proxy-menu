@@ -2,8 +2,8 @@
     "files": {
         "README.md": "d986c167c3122a49553526cb5778cc4a3a2136ec1dcce0222a610aef015f3320",
         "index.js": "f9e8eacb66d9eaf19cbcf183bc4d309ec81e2f8404ebd58d5da6b2211684b385",
-        "menu.js": "c44e1c1843520fd3a8a7fa624e02539d98a109070e97b857703962db24b47d98",
-        "module.json": "64ccc5fc99ee8e004f0530c0dbb366c09b7f469e51c8cda599df22f1677611da"
+        "menu.js": "3379c56431ee6648ea1d9cbdac18cdd78d4a31ef5ced0c05a865d4c9a958d4f1",
+        "module.json": "5eae185f084864c6e888d001049c8bdc164b7c981e18d2cabfe20462d497cd58"
     },
     "defs": {
         "C_ADMIN": 1,

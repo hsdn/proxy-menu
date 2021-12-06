@@ -55,8 +55,7 @@ module.exports = {
 		"Телепорт в город": {
 			"m et 2188 3205": { name: "Эксодор", color: c.o },
 			"m et 2140 9780": { name: "Велика", color: c.o },
-			"m et 98311 9069": { name: "Верхний Дозор", color: c.o },
-			"m et 2321 13": { name: "Остров Зари", color: c.o, nl: true },
+			"m et 98311 9069": { name: "Верхний Дозор", color: c.o, nl: true },
 			"m use 148": { name: "Блеклый камень", color: c.lg },
 			"m use 145": { name: "Трия", color: c.lg, nl: true },
 			"m use 144": { name: "Фронтера" },
