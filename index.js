@@ -1,7 +1,7 @@
 const OPCODES = {
 	"C_REQUEST_EVENT_MATCHING_TELEPORT": {
-		"385362": 64660, // GF 110.02
-		"384821": 33555, // GF 110.03
+		"385362": 64660, // GF v110.02
+		"384821": 33555, // GF v110.03
 		"386769": 26653 // GF v112.2
 	}
 };
@@ -22,6 +22,8 @@ module.exports = function ProxyMenu(mod) {
 	const menu = require("./menu");
 	const keybinds = new Set();
 	let player = null;
+
+	mod.game.initialize("inventory");
 
 	Object.keys(menu.categories).forEach(category =>
 		Object.keys(menu.categories[category]).forEach(command => {
@@ -94,7 +96,16 @@ module.exports = function ProxyMenu(mod) {
 			);
 			Object.keys(menu.categories[category]).forEach(command => {
 				const menuEntry = menu.categories[category][command];
-				if (mod.command.base.hooks.has(command.split(" ")[0])) {
+				const commandParts = command.split(" ");
+				let available = mod.command.base.hooks.has(commandParts[0]);
+				if (commandParts[0].toLocaleLowerCase() === COMMAND && commandParts[1].toLocaleLowerCase() === "use") {
+					available = false;
+					const items = mod.game.inventory.findAll(parseInt(commandParts[2]));
+					if (items.length !== 0) {
+						available = items[0].amount > 0;
+					}
+				}
+				if (available) {
 					tmpData.push(
 						{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 						{ "text": `<font color="${
