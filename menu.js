@@ -31,15 +31,14 @@ module.exports = {
 			"bank": { name: "Банк", color: c.lp },
 			"pbank": { name: "Перс. хранилище", color: c.lp },
 			"cbank": { name: "Костюмы", color: c.lp },
+			"gbank": { name: "Банк гильдии", color: c.lp },
 			// https://github.com/Risenio/Auto-Bank
-			"ab": { name: "Автобанк", color: c.p },
-			// https://github.com/hsdn/auto-guild-invite
-			"invg": { name: "Прием в ги", color: c.lg, nl: true },
+			"ab": { name: "Автобанк", color: c.p, nl: true },
 			// https://github.com/hsdn/npc-summoner
 			"broker": { name: "Брокер", color: c.lg },
-			"gbank": { name: "Банк гильдии", color: c.g },
 			"store": { name: "Торговец", color: c.g },
-			"sstore": { name: "Магазин редкостей", color: c.g, nl: true },
+			"sstore": { name: "Магазин редкостей", color: c.g },
+			"vg": { name: "Торговец авангарда", color: c.g, nl: true },
 			// https://github.com/hsdn/teleport
 			"tp to": { name: "Телепорт", color: c.b },
 			// https://github.com/TeraProxy/Essentials
@@ -47,7 +46,11 @@ module.exports = {
 			// https://github.com/BamV/auto-loot
 			"loot auto": { name: "Автолут", color: c.g },
 			// https://github.com/hsdn/anti-cc
-			"cc": { name: "Антиопрокид", color: c.g },
+			"cc": { name: "Антиопрокид", color: c.g, nl: true },
+			// https://github.com/hsdn/auto-guild-invite
+			"invg": { name: "Авторием в ги", color: c.lg },
+			// https://github.com/hsdn/auto-lfg-accept
+			"lfg": { name: "Авторием в лфг", color: c.lg },
 			// https://github.com/teralove/translate-chat
 			"translate send": { name: "Перевод", color: c.lb },
 		},
@@ -67,7 +70,7 @@ module.exports = {
 			// встроено в proxy-menu
 			"m et 98359 2000": { name: "Эксодор", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
 			"m et 2140 9780": { name: "Велика", color: c.o },
-			"m et 98311 9069": { name: "Верхний Дозор", color: c.o, nl: true },
+			"m et 98311 9069": { name: "Верхний Дозор", color: c.o },
 			// купить спитки телепортов
 			"m use 148": { name: "Блеклый камень", color: c.lg },
 			"m use 145": { name: "Трия", color: c.lg, nl: true },
