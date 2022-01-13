@@ -27,35 +27,48 @@ const c = {
 module.exports = {
 	"categories": {
 		"Основное": {
+			// https://github.com/hsdn/npc-summoner
 			"bank": { name: "Банк", color: c.lp },
 			"pbank": { name: "Перс. хранилище", color: c.lp },
 			"cbank": { name: "Костюмы", color: c.lp },
+			// https://github.com/Risenio/Auto-Bank
 			"ab": { name: "Автобанк", color: c.p },
+			// https://github.com/hsdn/auto-guild-invite
 			"invg": { name: "Прием в ги", color: c.lg, nl: true },
+			// https://github.com/hsdn/npc-summoner
 			"broker": { name: "Брокер", color: c.lg },
 			"gbank": { name: "Банк гильдии", color: c.g },
 			"store": { name: "Торговец", color: c.g },
 			"sstore": { name: "Магазин редкостей", color: c.g, nl: true },
+			// https://github.com/hsdn/teleport
 			"tp to": { name: "Телепорт", color: c.b },
+			// https://github.com/TeraProxy/Essentials
 			"ess": { name: "Автоюз банки", color: c.y },
+			// https://github.com/BamV/auto-loot
 			"loot auto": { name: "Автолут", color: c.g },
+			// https://github.com/hsdn/anti-cc
 			"cc": { name: "Антиопрокид", color: c.g },
+			// https://github.com/teralove/translate-chat
 			"translate send": { name: "Перевод", color: c.lb },
 		},
 		"Гоблины эксодора (монеты странствий)": {
+			// [платный] Boss-Helper-NG (F)
 			"tr": { name: "Время спавна", color: c.lb },
 			"tr scan": { name: "Поиск", color: c.o },
 			"tr stop": { name: "Стоп", color: c.r },
 		},
 		"Тайные торговцы": {
+			// https://github.com/hsdn/Boss-Helper
 			"mm": { name: "Время спавна", color: c.lb },
 			"mm scan": { name: "Поиск", color: c.o },
 			"mm stop": { name: "Стоп", color: c.r },
 		},
 		"Телепорт в город": {
-			"m et 2188 3205": { name: "Эксодор", color: c.o },
+			// встроено в proxy-menu
+			"m et 98359 2000": { name: "Эксодор", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
 			"m et 2140 9780": { name: "Велика", color: c.o },
 			"m et 98311 9069": { name: "Верхний Дозор", color: c.o, nl: true },
+			// купить спитки телепортов
 			"m use 148": { name: "Блеклый камень", color: c.lg },
 			"m use 145": { name: "Трия", color: c.lg, nl: true },
 			"m use 144": { name: "Фронтера" },
@@ -66,6 +79,7 @@ module.exports = {
 			"m use 442": { name: "Территория архива" },
 		},
 		"Неуязвимость": {
+			// [платный] invincible-mode
 			"inv s": { name: "Статус", color: c.lb },
 			"inv h 70": { name: "70", color: c.y },
 			"inv h 150": { name: "150", color: c.y },
@@ -74,6 +88,7 @@ module.exports = {
 			"inv i": { name: "Включить/Выключить", color: c.r },
 		},
 		"Гайд (tera-guide)": {
+			// https://github.com/hsdn/tera-guide
 			"guide ui": { name: "Настройка" },
 			"guide stream": { name: "Стрим", color: c.y },
 			"guide voice": { name: "Голос", color: c.y },
@@ -81,10 +96,12 @@ module.exports = {
 			"guide debug ui": { name: "Отладка", color: c.b },
 		},
 		"Разное": {
-			"tp blink 100": { name: "Блинк вперед", keybind: "ctrl+shift+b" },
+			// https://github.com/hsdn/teleport
+			"tp blink 100": { name: "Блинк вперед" },
 			"tp up 250": { name: "Блинк вверх" },
 			"tp down 250": { name: "Блинк вниз" },
 			"tp drop -1": { name: "Убить себя", color: c.r },
+			// https://github.com/hsdn/gathering-markers
 			"gat ui": { name: "Сбор", color: c.lb },
 		},
 	}
