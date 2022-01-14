@@ -48,9 +48,9 @@ module.exports = {
 			// https://github.com/hsdn/anti-cc
 			"cc": { name: "Антиопрокид", color: c.g, nl: true },
 			// https://github.com/hsdn/auto-guild-invite
-			"invg": { name: "Авторием в ги", color: c.lg },
+			"invg": { name: "Автоприем в ги", color: c.lg },
 			// https://github.com/hsdn/auto-lfg-accept
-			"lfg": { name: "Авторием в лфг", color: c.lg },
+			"lfg": { name: "Автоприем в лфг", color: c.lg },
 			// https://github.com/teralove/translate-chat
 			"translate send": { name: "Перевод", color: c.lb },
 		},
