@@ -2,7 +2,7 @@ const OPCODES = {
 	"C_REQUEST_EVENT_MATCHING_TELEPORT": {
 		"385362": 64660, // GF v110.02
 		"384821": 33555, // GF v110.03
-		"386769": 26653 // GF v112.2
+		"386769": 26653 // GF v112.02
 	}
 };
 
@@ -51,21 +51,23 @@ module.exports = function ProxyMenu(mod) {
 
 	mod.hook("C_CONFIRM_UPDATE_NOTIFICATION", 1, { "order": 100010 }, () => false);
 	mod.hook("C_ADMIN", 1, { "order": 100010, "filter": { "fake": false, "silenced": false, "modified": null } }, event => {
-		event.command.split(";").forEach(cmd => {
-			try {
-				mod.command.exec(cmd);
-			} catch (e) {
-				return;
-			}
-		});
-		return false;
+		if (event.command.includes(";")) {
+			event.command.split(";").forEach(cmd => {
+				try {
+					mod.command.exec(cmd);
+				} catch (e) {
+					return;
+				}
+			});
+			return false;
+		}
 	});
 
 	mod.hook("S_SPAWN_ME", 3, event => { player = event; });
 	mod.hook("C_PLAYER_LOCATION", 5, event => { player = event; });
 
 	// debug
-	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => console.log(event));
+	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => { console.log(event); });
 
 	mod.command.add(COMMAND, {
 		"$none": () => show(),
@@ -94,9 +96,18 @@ module.exports = function ProxyMenu(mod) {
 				{ "text": `<font color="#cccccc" size="+22">${category}</font>` },
 				{ "text": "<br>" }
 			);
-			Object.keys(menu.categories[category]).forEach(command => {
-				const menuEntry = menu.categories[category][command];
-				const commandParts = command.split(" ");
+			menu.categories[category].forEach(menuEntry => {
+				if (menuEntry.class) {
+					const classes = (Array.isArray(menuEntry.class) ? menuEntry.class : [menuEntry.class]);
+					if (!classes.includes(mod.game.me.class)) {
+						return;
+					}
+				}
+				if (!menuEntry.command || !menuEntry.name) {
+					tmpData.push({ "text": "<br>" });
+					return;
+				}
+				const commandParts = menuEntry.command.split(" ");
 				let available = mod.command.base.hooks.has(commandParts[0]);
 				if (commandParts[0].toLocaleLowerCase() === COMMAND && commandParts[1].toLocaleLowerCase() === "use") {
 					available = false;
@@ -111,16 +122,15 @@ module.exports = function ProxyMenu(mod) {
 						{ "text": `<font color="${
 							menuEntry.color || "#4de19c"}" size="+${
 							menuEntry.size || "20"}">[${
-							menuEntry.name || command}]${
-							menuEntry.nl === true ? "<br>" : ""}</font>`, "command": command }
+							menuEntry.name || menuEntry.command}]</font>`,
+						"command": `${menuEntry.command};` }
 					);
 				} else {
 					tmpData.push(
 						{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 						{ "text": `<font color="#777777" size="+${
 							menuEntry.size || "20"}">[${
-							menuEntry.name || command}]${
-							menuEntry.nl === true ? "<br>" : ""}</font>` }
+							menuEntry.name || menuEntry.command}]</font>` }
 					);
 				}
 			});
