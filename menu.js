@@ -62,7 +62,7 @@ module.exports = {
 			// https://github.com/hsdn/auto-lfg-accept
 			{ command: "lfg", name: "Автоприем в лфг", color: c.lg },
 			// https://github.com/teralove/translate-chat
-			{ command: "translate send", name: "Перевод", color: c.lb },
+			{ command: "translate send", name: "Автоперевод", color: c.lb },
 			// https://github.com/hsdn/gathering-markers
 			{ command: "gat ui", name: "Сбор", color: c.lb },
 		],
@@ -120,6 +120,8 @@ module.exports = {
 			{ command: "tp drop -1", name: "Убить себя", color: c.r },
 			// [приват] super-sorc
 			{ command: "sorc ui", name: "Сорк", color: c.lb, class: "sorcerer" },
+			// [приват] super-sorc
+			{ command: "braw ui", name: "Круш", color: c.lb, class: "fighter" },
 			// [приват] mystic-bot
 			{ command: "mb ui", name: "Мист", color: c.lb, class: "elementalist" },
 		],
