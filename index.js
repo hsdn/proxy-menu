@@ -6,6 +6,7 @@ const OPCODES = {
 	}
 };
 
+const moment = require("moment-timezone");
 const globalShortcut = global.TeraProxy.GUIMode ? require("electron").globalShortcut : null;
 
 function addOpcodeAndDefinition(mod, name, version = null, definition = null) {
@@ -18,10 +19,12 @@ function addOpcodeAndDefinition(mod, name, version = null, definition = null) {
 }
 
 module.exports = function ProxyMenu(mod) {
+	const HOTKEY = "Ctrl+Shift+M";
 	const COMMAND = "m";
 	const menu = require("./menu");
 	const keybinds = new Set();
 	let player = null;
+	let debug = false;
 
 	mod.game.initialize("inventory");
 
@@ -38,8 +41,8 @@ module.exports = function ProxyMenu(mod) {
 		})
 	);
 
-	keybinds.add("Ctrl+Shift+M");
-	globalShortcut.register("Ctrl+Shift+M", () => show());
+	keybinds.add(HOTKEY);
+	globalShortcut.register(HOTKEY, () => show());
 
 	addOpcodeAndDefinition(mod, "C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
 		["unk1", "uint32"],
@@ -66,26 +69,17 @@ module.exports = function ProxyMenu(mod) {
 	mod.hook("S_SPAWN_ME", 3, event => { player = event; });
 	mod.hook("C_PLAYER_LOCATION", 5, event => { player = event; });
 
-	// debug
-	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => { console.log(event); });
+	mod.hook("C_REQUEST_EVENT_MATCHING_TELEPORT", 0, event => {
+		if (debug) console.log("C_REQUEST_EVENT_MATCHING_TELEPORT:", event);
+	});
 
 	mod.command.add(COMMAND, {
 		"$none": () => show(),
 		"use": id => useItem(id),
 		"et": (quest, instance) => eventTeleport(quest, instance),
-		"map": () => {
-			mod.send("S_REQUEST_CONTRACT", 2, {
-				"senderId": mod.game.me.gameId,
-				"recipientId": "0",
-				"type": 54,
-				"id": 2591928,
-				"serverId": 40,
-				"unk3": 0,
-				"time": 0,
-				"senderName": "",
-				"recipientName": "",
-				"data": Buffer.alloc(0)
-			});
+		"debug": () => {
+			debug = !debug;
+			mod.command.message(`Debug mode ${debug ? "enabled" : "disabled"}.`);
 		}
 	});
 
@@ -140,9 +134,11 @@ module.exports = function ProxyMenu(mod) {
 		});
 		tmpData.push(
 			{ "text": "<br>" },
-			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload menu; ${COMMAND}` }
+			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload menu; ${COMMAND}` },
+			{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
+			{ "text": `<font color="#dddddd" size="+18">${moment().tz("Europe/Berlin").format("HH:mm z")} / ${moment().tz("Europe/Moscow").format("HH:mm z")}</font>` }
 		);
-		parse(tmpData, "<font>Menu [Ctrl + Shift + M]</font>");
+		parse(tmpData, `<font>Menu [${HOTKEY.replaceAll("+", " + ")}]</font>`);
 	}
 
 	function useItem(id) {
@@ -183,9 +179,11 @@ module.exports = function ProxyMenu(mod) {
 		mod.send("S_ANNOUNCE_UPDATE_NOTIFICATION", 1, { "id": 0, title, body });
 	}
 
+	this.saveState = () => ({ player });
+	this.loadState = state => player = state.player;
+
 	this.destructor = () => {
-		player = null;
 		keybinds.forEach(keybind => globalShortcut.unregister(keybind));
-		mod.command.remove(["m"]);
+		mod.command.remove(COMMAND);
 	};
 };
