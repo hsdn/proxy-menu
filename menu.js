@@ -83,20 +83,21 @@ module.exports = {
 		],
 		"Телепорт в город": [
 			// встроено в proxy-menu
-			{ command: "m et 98359 2000", name: "Эксодор", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
+			{ command: "m et 98359 2000", name: "Эксодор 1", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
+			{ command: "m et 92189 3105", name: "Эксодор 2", color: c.o },
 			{ command: "m et 2140 9780", name: "Велика", color: c.o },
 			{ command: "m et 98311 9069", name: "Верхний Дозор", color: c.o },
-			// купить спитки телепортов
-			{ command: "m use 148", name: "Блеклый камень", color: c.lg },
-			{ command: "m use 145", name: "Трия", color: c.lg },
 			{},
+			// купить спитки телепортов
 			{ command: "m use 144", name: "Фронтера" },
 			{ command: "m use 139", name: "Тулуфан" },
 			{ command: "m use 147", name: "Акарум" },
 			{ command: "m use 149", name: "Эленея", color: c.g },
+			{ command: "m use 145", name: "Трия", color: c.lg },
 			{},
 			{ command: "m use 154", name: "Аванпост следопытов" },
 			{ command: "m use 442", name: "Территория архива" },
+			{ command: "m use 148", name: "Блеклый камень", color: c.lg },
 		],
 		"Неуязвимость": [
 			// [приват] invincible-mode
@@ -118,7 +119,7 @@ module.exports = {
 		"Разное": [
 			// https://github.com/hsdn/teleport
 			{ command: "tp blink 100", name: "Блинк вперед" },
-			{ command: "tp up 600", name: "Блинк вверх" },
+			{ command: "tp up 500", name: "Блинк вверх" },
 			{ command: "tp down 250", name: "Блинк вниз" },
 			{ command: "tp drop -1", name: "Убить себя", color: c.r },
 			// [приват] super-sorc
