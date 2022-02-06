@@ -71,6 +71,7 @@ module.exports = {
 			{ command: "tr", name: "Время спавна", color: c.lb },
 			{ command: "tr scan", name: "Поиск", color: c.o },
 			{ command: "tr stop", name: "Стоп", color: c.r },
+			{ command: "tr loc", name: "Позиции", color: c.b },
 			{ command: "bh move", name: "Телепорт под моба", color: c.lg },
 		],
 		"Тайные торговцы": [
@@ -78,6 +79,7 @@ module.exports = {
 			{ command: "mm", name: "Время спавна", color: c.lb },
 			{ command: "mm scan", name: "Поиск", color: c.o },
 			{ command: "mm stop", name: "Стоп", color: c.r },
+			{ command: "mm loc", name: "Позиции", color: c.b },
 		],
 		"Телепорт в город": [
 			// встроено в proxy-menu
@@ -116,12 +118,12 @@ module.exports = {
 		"Разное": [
 			// https://github.com/hsdn/teleport
 			{ command: "tp blink 100", name: "Блинк вперед" },
-			{ command: "tp up 250", name: "Блинк вверх" },
+			{ command: "tp up 600", name: "Блинк вверх" },
 			{ command: "tp down 250", name: "Блинк вниз" },
 			{ command: "tp drop -1", name: "Убить себя", color: c.r },
 			// [приват] super-sorc
 			{ command: "sorc ui", name: "Сорк", color: c.lb, class: "sorcerer" },
-			// [приват] super-sorc
+			// [приват] super-braw
 			{ command: "braw ui", name: "Круш", color: c.lb, class: "fighter" },
 			// [приват] mystic-bot
 			{ command: "mb ui", name: "Мист", color: c.lb, class: "elementalist" },
