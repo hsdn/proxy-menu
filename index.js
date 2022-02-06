@@ -117,7 +117,7 @@ module.exports = function ProxyMenu(mod) {
 							menuEntry.color || "#4de19c"}" size="+${
 							menuEntry.size || "20"}">[${
 							menuEntry.name || menuEntry.command}]</font>`,
-						"command": `${menuEntry.command};` }
+						"command": `${menuEntry.command}` }
 					);
 				} else {
 					tmpData.push(
@@ -167,7 +167,7 @@ module.exports = function ProxyMenu(mod) {
 				if (body.length >= 16000)
 					throw "GUI data limit exceeded, some values may be missing.";
 				if (data.command)
-					body += `<a href="admincommand:/@${data.command}">${data.text}</a>`;
+					body += `<a href="admincommand:/@${data.command};">${data.text}</a>`;
 				else if (!data.command)
 					body += `${data.text}`;
 				else
