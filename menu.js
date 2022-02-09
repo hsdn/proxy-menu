@@ -85,10 +85,11 @@ module.exports = {
 			// встроено в proxy-menu
 			{ command: "m et 98359 2000", name: "Эксодор 1", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
 			{ command: "m et 92189 3105", name: "Эксодор 2", color: c.o },
-			{ command: "m et 2140 9780", name: "Велика", color: c.o },
+			// { command: "m et 2140 9780", name: "Велика", color: c.o },
 			{ command: "m et 98311 9069", name: "Верхний Дозор", color: c.o },
 			{},
 			// купить спитки телепортов
+			{ command: "m use 143", name: "Велика" },
 			{ command: "m use 144", name: "Фронтера" },
 			{ command: "m use 139", name: "Тулуфан" },
 			{ command: "m use 147", name: "Акарум" },
