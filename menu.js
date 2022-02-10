@@ -23,6 +23,8 @@ const c = {
 //   name    -- Название пункта меню
 //   color   -- Цвет пункта меню
 //   keybind -- Установка горячей клавиши
+//   ifcmd   -- Фильтр (отображение) пункта меню, если указанная команда найдена
+//   ifnocmd -- Фильтр (отображение) пункта меню, если указанная команда не найдена
 //   class   -- Фильтр (отображение) пункта меню по игровому классу:
 //                  warrior, lancer, slayer, berserker, sorcerer, archer, priest,
 //                  elementalist, soulless, engineer, fighter, assassin, glaiver
@@ -85,20 +87,29 @@ module.exports = {
 			// встроено в proxy-menu
 			{ command: "m et 98359 2000", name: "Эксодор 1", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
 			{ command: "m et 92189 3105", name: "Эксодор 2", color: c.o },
-			// { command: "m et 2140 9780", name: "Велика", color: c.o },
 			{ command: "m et 98311 9069", name: "Верхний Дозор", color: c.o },
+			// [приват] atlas-ng
+			{ command: "m et 2140 9780", name: "Велика", color: c.o, ifnocmd: "atlas" },
+			{ command: "atlas tp 63001", name: "Велика", color: c.o, ifcmd: "atlas" },
 			{},
-			// купить спитки телепортов
-			{ command: "m use 143", name: "Велика" },
-			{ command: "m use 144", name: "Фронтера" },
-			{ command: "m use 139", name: "Тулуфан" },
-			{ command: "m use 147", name: "Акарум" },
-			{ command: "m use 149", name: "Эленея", color: c.g },
-			{ command: "m use 145", name: "Трия", color: c.lg },
+			// купить спитки телепортов / [приват] atlas-ng
+			{ command: "atlas tp 75001", name: "Фронтера", ifcmd: "atlas" },
+			{ command: "m use 144", name: "Фронтера", ifnocmd: "atlas" },
+			{ command: "atlas tp 66001", name: "Тулуфан", ifcmd: "atlas" },
+			{ command: "m use 139", name: "Тулуфан", ifnocmd: "atlas" },
+			{ command: "atlas tp 73001", name: "Акарум", ifcmd: "atlas" },
+			{ command: "m use 147", name: "Акарум", ifnocmd: "atlas" },
+			{ command: "atlas tp 74001", name: "Эленея", color: c.g, ifcmd: "atlas" },
+			{ command: "m use 149", name: "Эленея", color: c.g, ifnocmd: "atlas" },
+			{ command: "atlas tp 70001", name: "Трия", color: c.lg, ifcmd: "atlas" },
+			{ command: "m use 145", name: "Трия", color: c.lg, ifnocmd: "atlas" },
 			{},
-			{ command: "m use 154", name: "Аванпост следопытов" },
-			{ command: "m use 442", name: "Территория архива" },
-			{ command: "m use 148", name: "Блеклый камень", color: c.lg },
+			{ command: "atlas tp 77001", name: "Аванпост следопытов", ifcmd: "atlas" },
+			{ command: "m use 154", name: "Аванпост следопытов", ifnocmd: "atlas" },
+			{ command: "atlas tp 71001", name: "Бастион", ifcmd: "atlas" },
+			{ command: "m use 442", name: "Территория архива", ifnocmd: "atlas" },
+			{ command: "atlas tp 83001", name: "Блеклый камень", color: c.lg, ifcmd: "atlas" },
+			{ command: "m use 148", name: "Блеклый камень", color: c.lg, ifnocmd: "atlas" },
 		],
 		"Неуязвимость": [
 			// [приват] invincible-mode

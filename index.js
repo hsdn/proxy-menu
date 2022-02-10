@@ -98,6 +98,12 @@ module.exports = function ProxyMenu(mod) {
 						return;
 					}
 				}
+				if (menuEntry.ifcmd && !mod.command.base.hooks.has(menuEntry.ifcmd.toLocaleLowerCase())) {
+					return;
+				}
+				if (menuEntry.ifnocmd && mod.command.base.hooks.has(menuEntry.ifnocmd.toLocaleLowerCase())) {
+					return;
+				}
 				if (!menuEntry.command || !menuEntry.name) {
 					tmpData.push({ "text": "<br>" });
 					return;
