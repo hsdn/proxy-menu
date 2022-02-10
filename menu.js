@@ -89,7 +89,7 @@ module.exports = {
 			{ command: "m et 92189 3105", name: "Эксодор 2", color: c.o },
 			{ command: "m et 98311 9069", name: "Верхний Дозор", color: c.o },
 			// [приват] atlas-ng
-			{ command: "m et 2140 9780", name: "Велика", color: c.o, ifnocmd: "atlas" },
+			{ command: "m use 143", name: "Велика", color: c.o, ifnocmd: "atlas" },
 			{ command: "atlas tp 63001", name: "Велика", color: c.o, ifcmd: "atlas" },
 			{},
 			// купить спитки телепортов / [приват] atlas-ng
