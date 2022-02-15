@@ -84,13 +84,13 @@ module.exports = {
 			{ command: "mm loc", name: "Позиции", color: c.b },
 		],
 		"Телепорт в город": [
+			// [приват] atlas-ng
+			{ command: "m use 143", name: "Велика", color: c.o, ifnocmd: "atlas" },
+			{ command: "atlas tp 63001", name: "Велика", color: c.o, ifcmd: "atlas" },
 			// встроено в proxy-menu
 			{ command: "m et 98359 2000", name: "Эксодор 1", color: c.o }, // рыбалка 98359 2000, лбн 2189 3105
 			{ command: "m et 92189 3105", name: "Эксодор 2", color: c.o },
 			{ command: "m et 98311 9069", name: "Верхний Дозор", color: c.o },
-			// [приват] atlas-ng
-			{ command: "m use 143", name: "Велика", color: c.o, ifnocmd: "atlas" },
-			{ command: "atlas tp 63001", name: "Велика", color: c.o, ifcmd: "atlas" },
 			{},
 			// купить спитки телепортов / [приват] atlas-ng
 			{ command: "atlas tp 75001", name: "Фронтера", ifcmd: "atlas" },
