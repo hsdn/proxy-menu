@@ -74,7 +74,7 @@ module.exports = {
 			{ command: "tr scan", name: "Поиск", color: c.o },
 			{ command: "tr stop", name: "Стоп", color: c.r },
 			{ command: "tr loc", name: "Позиции", color: c.b },
-			{ command: "bh move", name: "Телепорт под моба", color: c.lg, ifnocmd: "tr" },
+			{ command: "bh move", name: "Телепорт под моба", color: c.lg, ifcmd: "tr" },
 		],
 		"Тайные торговцы": [
 			// https://github.com/hsdn/Boss-Helper
