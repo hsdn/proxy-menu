@@ -20,12 +20,12 @@ function addOpcodeAndDefinition(mod, name, version = null, definition = null) {
 }
 
 module.exports = function ProxyMenu(mod) {
-	const HOTKEY = "Ctrl+Shift+M";
 	const COMMAND = "m";
 	const menu = require("./menu");
 	const keybinds = new Set();
 	let player = null;
 	let debug = false;
+	let premiumAvailable = false;
 
 	mod.game.initialize("inventory");
 
@@ -42,8 +42,8 @@ module.exports = function ProxyMenu(mod) {
 		})
 	);
 
-	keybinds.add(HOTKEY);
-	globalShortcut.register(HOTKEY, () => show());
+	keybinds.add(mod.settings.hotkey);
+	globalShortcut.register(mod.settings.hotkey, () => show());
 
 	addOpcodeAndDefinition(mod, "C_REQUEST_EVENT_MATCHING_TELEPORT", 0, [
 		["unk1", "uint32"],
@@ -74,8 +74,89 @@ module.exports = function ProxyMenu(mod) {
 		if (debug) console.log("C_REQUEST_EVENT_MATCHING_TELEPORT:", event);
 	});
 
+	mod.hook("S_LOAD_TOPO", "raw", () => {
+		if (premiumAvailable) return;
+		if (mod.settings.premiumSlotEnabled && menu.premium.length === 0) {
+			mod.send("S_PREMIUM_SLOT_DATALIST", 2, {
+				"sets": [
+					{ "id": 0, "inventory": [] }
+				]
+			});
+			premiumAvailable = true;
+		}
+	});
+
+	mod.hook("S_PREMIUM_SLOT_DATALIST", 2, { "order": Infinity, "filter": { "fake": null } }, event => {
+		if (!mod.settings.premiumSlotEnabled || menu.premium.length === 0) return;
+		menu.premium.forEach(slot => {
+			if (slot.class) {
+				const classes = (Array.isArray(slot.class) ? slot.class : [slot.class]);
+				if (!classes.includes(mod.game.me.class)) {
+					return;
+				}
+			}
+			if (slot.ifcmd && !mod.command.base.hooks.has(slot.ifcmd.toLocaleLowerCase())) {
+				return;
+			}
+			if (slot.ifnocmd && mod.command.base.hooks.has(slot.ifnocmd.toLocaleLowerCase())) {
+				return;
+			}
+			if (!mod.command.base.hooks.has(slot.command.split(" ")[0])) {
+				return;
+			}
+			event.sets[0].inventory.push({
+				"slot": event.sets[0].inventory.length + 1,
+				"unk1": 1,
+				"type": 1,
+				"id": slot.id,
+				"amount": -1,
+				"cooldown": "30000",
+				"cooldownRemaining": "0",
+				"unk2": true
+			});
+		});
+		return true;
+	});
+
+	mod.hook("C_USE_PREMIUM_SLOT", 1, event => {
+		if (menu.premium.length === 0) return;
+		let used = false;
+		menu.premium.forEach(slot => {
+			if (slot.command && event.id === slot.id) {
+				mod.command.exec(slot.command);
+				used = true;
+			}
+		});
+		if (used) {
+			return false;
+		}
+	});
+
 	mod.command.add(COMMAND, {
 		"$none": () => show(),
+		"premium": () => {
+			mod.settings.premiumSlotEnabled = !mod.settings.premiumSlotEnabled;
+			mod.command.message(`Add item to premium panel: ${mod.settings.premiumSlotEnabled ? "enabled" : "disabled"}`);
+		},
+		"hotkey": arg => {
+			if (!arg) {
+				mod.command.message(`Current hotkey: ${mod.settings.hotkey}`);
+			} else {
+				if (arg.toLowerCase() !== mod.settings.hotkey.toLowerCase()) {
+					const hotkey = arg.toLowerCase().split("+").map(w => w[0].toUpperCase() + w.substr(1)).join("+");
+					try {
+						globalShortcut.register(hotkey, () => show());
+						globalShortcut.unregister(mod.settings.hotkey);
+						keybinds.add(hotkey);
+						keybinds.delete(mod.settings.hotkey);
+						mod.settings.hotkey = hotkey;
+					} catch (e) {
+						return mod.command.message(`Invalid hotkey: ${hotkey}`);
+					}
+				}
+				mod.command.message(`New hotkey: ${mod.settings.hotkey}`);
+			}
+		},
 		"use": id => useItem(id),
 		"et": (quest, instance) => eventTeleport(quest, instance),
 		"debug": () => {
@@ -145,7 +226,7 @@ module.exports = function ProxyMenu(mod) {
 			{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 			{ "text": `<font color="#dddddd" size="+18">${moment().tz("Europe/Berlin").format("HH:mm z")} / ${moment().tz("Europe/Moscow").format("HH:mm z")}</font>` }
 		);
-		parse(tmpData, `<font>Menu [${HOTKEY.replaceAll("+", " + ")}]</font>`);
+		parse(tmpData, `<font>Menu [${mod.settings.hotkey.replaceAll("+", " + ")}]</font>`);
 	}
 
 	function useItem(id) {
