@@ -74,6 +74,10 @@ module.exports = function ProxyMenu(mod) {
 		if (debug) console.log("C_REQUEST_EVENT_MATCHING_TELEPORT:", event);
 	});
 
+	mod.hook("S_RETURN_TO_LOBBY", "raw", () => {
+		premiumAvailable = false;
+	});
+
 	mod.hook("S_LOAD_TOPO", "raw", () => {
 		if (premiumAvailable) return;
 		if (mod.settings.premiumSlotEnabled && menu.premium.length === 0) {
