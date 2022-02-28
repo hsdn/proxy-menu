@@ -1,9 +1,9 @@
 {
     "files": {
         "README.md": "9479943cccac58c7f4c7afc805826bc27803a98026875f15566254acb99ce61f",
-        "index.js": "3c314aa779c3368c928d23cc2ca37fd8e6e1a8b5e59ea6d93b6bcbf2efcdb1ba",
+        "index.js": "e72a614537bbfdbce6bd2018801e80e2eba37bd6ac84f3a182d2dfd694242f7a",
         "menu.js": "8abe660e71943bdd23179c31cc7776e70818a6e4106fd55ef91be11a6799bdcc",
-        "module.json": "77b01dc020f97e718e13edb4aa2234973303a2ca4e0d9e6f654a338e29c738c1",
+        "module.json": "9d0953257a47e7761f5619fb9cb3ebb820d47bd9a3d4e395be01655f7f6dd723",
         "node_modules/moment-timezone/data/meta/latest.json": "1574fc70d8fd2554031aed90b1424371d6775bd9c0cab5cbd20e04753984f501",
         "node_modules/moment-timezone/data/packed/latest.json": "ccdc6aa04df161122e948b89e0629618094a55fe7e03a70cf88952f823273b2b",
         "node_modules/moment-timezone/index.js": "b93bc1a0ab15d56e12f0e281bf005d39166952d9208b828e8d056563f3ff1fd1",
@@ -18,6 +18,7 @@
         "C_USE_ITEM": 3,
         "C_USE_PREMIUM_SLOT": 1,
         "S_ANNOUNCE_UPDATE_NOTIFICATION": 1,
+        "S_LOAD_TOPO": "raw",
         "S_PREMIUM_SLOT_DATALIST": 2,
         "S_PREMIUM_SLOT_OFF": "raw",
         "S_SPAWN_ME": 3

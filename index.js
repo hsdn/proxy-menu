@@ -25,6 +25,7 @@ module.exports = function ProxyMenu(mod) {
 	const keybinds = new Set();
 	let player = null;
 	let debug = false;
+	let premiumAvailable = false;
 
 	mod.game.initialize("inventory");
 
@@ -73,16 +74,18 @@ module.exports = function ProxyMenu(mod) {
 		if (debug) console.log("C_REQUEST_EVENT_MATCHING_TELEPORT:", event);
 	});
 
-	mod.hook("S_PREMIUM_SLOT_OFF", "raw", () => {
-		if (!mod.settings.premiumSlotEnabled || menu.premium.length === 0) return;
+	mod.hook("S_PREMIUM_SLOT_OFF", "raw", () => false);
 
-		mod.send("S_PREMIUM_SLOT_DATALIST", 2, {
-			"sets": [
-				{ "id": 0, "inventory": [] }
-			]
-		});
-
-		return false;
+	mod.hook("S_LOAD_TOPO", "raw", () => {
+		if (premiumAvailable) return;
+		if (mod.settings.premiumSlotEnabled && menu.premium.length !== 0) {
+			mod.send("S_PREMIUM_SLOT_DATALIST", 2, {
+				"sets": [
+					{ "id": 0, "inventory": [] }
+				]
+			});
+			premiumAvailable = true;
+		}
 	});
 
 	mod.hook("S_PREMIUM_SLOT_DATALIST", 2, { "order": Infinity, "filter": { "fake": null } }, event => {
