@@ -74,22 +74,24 @@ module.exports = function ProxyMenu(mod) {
 		if (debug) console.log("C_REQUEST_EVENT_MATCHING_TELEPORT:", event);
 	});
 
-	mod.hook("S_PREMIUM_SLOT_OFF", "raw", () => false);
+	mod.hook("S_PREMIUM_SLOT_OFF", "raw", () => !mod.settings.premiumSlotEnabled);
+
+	mod.hook("S_RETURN_TO_LOBBY", "raw", () => {
+		premiumAvailable = false;
+	});
 
 	mod.hook("S_LOAD_TOPO", "raw", () => {
-		if (premiumAvailable) return;
-		if (mod.settings.premiumSlotEnabled && menu.premium.length !== 0) {
-			mod.send("S_PREMIUM_SLOT_DATALIST", 2, {
-				"sets": [
-					{ "id": 0, "inventory": [] }
-				]
-			});
-			premiumAvailable = true;
-		}
+		if (premiumAvailable || !mod.settings.premiumSlotEnabled || menu.premium.length === 0) return;
+		mod.send("S_PREMIUM_SLOT_DATALIST", 2, {
+			"sets": [
+				{ "id": 0, "inventory": [] }
+			]
+		});
 	});
 
 	mod.hook("S_PREMIUM_SLOT_DATALIST", 2, { "order": Infinity, "filter": { "fake": null } }, event => {
 		if (!mod.settings.premiumSlotEnabled || menu.premium.length === 0) return;
+		premiumAvailable = true;
 		menu.premium.forEach(slot => {
 			if (slot.class) {
 				const classes = (Array.isArray(slot.class) ? slot.class : [slot.class]);

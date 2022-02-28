@@ -1,7 +1,7 @@
 {
     "files": {
         "README.md": "9479943cccac58c7f4c7afc805826bc27803a98026875f15566254acb99ce61f",
-        "index.js": "e72a614537bbfdbce6bd2018801e80e2eba37bd6ac84f3a182d2dfd694242f7a",
+        "index.js": "e1aa947a2a6e3f1ec5a8fd265d51435558da5eab2982ee0685d27ec8dc260f40",
         "menu.js": "8abe660e71943bdd23179c31cc7776e70818a6e4106fd55ef91be11a6799bdcc",
         "module.json": "9d0953257a47e7761f5619fb9cb3ebb820d47bd9a3d4e395be01655f7f6dd723",
         "node_modules/moment-timezone/data/meta/latest.json": "1574fc70d8fd2554031aed90b1424371d6775bd9c0cab5cbd20e04753984f501",
@@ -21,6 +21,7 @@
         "S_LOAD_TOPO": "raw",
         "S_PREMIUM_SLOT_DATALIST": 2,
         "S_PREMIUM_SLOT_OFF": "raw",
+        "S_RETURN_TO_LOBBY": "raw",
         "S_SPAWN_ME": 3
     }
 }
