@@ -145,6 +145,8 @@ module.exports.categories = {
 		{ command: "sorc ui", name: "Сорк", color: c.lb, class: "sorcerer" },
 		// [приват] super-braw
 		{ command: "braw ui", name: "Круш", color: c.lb, class: "fighter" },
+		// [приват] super-ninja
+		{ command: "ninj ui", name: "Шинка", color: c.lb, class: "assassin" },
 		// [приват] mystic-bot
 		{ command: "mb ui", name: "Мист", color: c.lb, class: "elementalist" },
 	],
