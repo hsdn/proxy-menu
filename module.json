@@ -1,15 +1,16 @@
 {
-    "name": "Menu",
-    "author": "JKQ",
+    "name": "proxy-menu",
+    "author": "HSDN",
     "description": "Proxy Menu",
     "options": {
-        "niceName": "Proxy Menu",
+        "cliName": "Proxy Menu",
+        "guiName": "Proxy Menu",
         "settingsVersion": 1,
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
         "reloadable": true
     },
     "servers": ["http://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
-    "disableAutoUpdate": false,
-    "version": "3/22/2022"
+    "version": "4/4/2022",
+    "disableAutoUpdate": false
 }
