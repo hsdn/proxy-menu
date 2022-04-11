@@ -11,6 +11,6 @@
         "reloadable": true
     },
     "servers": ["http://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
-    "version": "4/4/2022",
+    "version": "4/11/2022",
     "disableAutoUpdate": false
 }

@@ -227,7 +227,7 @@ module.exports = function ProxyMenu(mod) {
 		});
 		tmpData.push(
 			{ "text": "<br>" },
-			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload menu; ${COMMAND}` },
+			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload proxy-menu; ${COMMAND}` },
 			{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 			{ "text": `<font color="#dddddd" size="+18">${moment().tz("Europe/Berlin").format("HH:mm z")} / ${moment().tz("Europe/Moscow").format("HH:mm z")}</font>` }
 		);
