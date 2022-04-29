@@ -76,6 +76,7 @@ module.exports.categories = {
 		// https://github.com/hsdn/gathering-markers
 		{ command: "gat ui", name: "Сбор", color: c.lb },
 	],
+	/*
 	"Гоблины эксодора (монеты странствий)": [
 		// [приват] Boss-Helper-NG (F)
 		{ command: "tr", name: "Время спавна", color: c.lb },
@@ -84,6 +85,7 @@ module.exports.categories = {
 		{ command: "tr loc", name: "Позиции", color: c.b },
 		{ command: "bh move", name: "Телепорт под моба", color: c.lg, ifcmd: "tr" },
 	],
+	*/
 	"Тайные торговцы": [
 		// https://github.com/hsdn/Boss-Helper
 		{ command: "mm", name: "Время спавна", color: c.lb },
