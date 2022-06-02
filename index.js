@@ -3,6 +3,7 @@ const OPCODES = {
 		"366226": 23975, // GF v92.03
 		"367078": 38468, // GF v92.04
 		"367081": 59605, // GF v92.04
+		"376012": 33555, // TW v100.02
 		"385362": 64660, // GF v110.02
 		"384821": 33555, // GF v110.03
 		"386769": 26653, // GF v112.02
@@ -234,7 +235,7 @@ module.exports = function ProxyMenu(mod) {
 			{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 			{ "text": `<font color="#dddddd" size="+18">${moment().tz("Europe/Berlin").format("HH:mm z")} / ${moment().tz("Europe/Moscow").format("HH:mm z")}</font>` }
 		);
-		parse(tmpData, `<font>Menu [${mod.settings.hotkey.replaceAll("+", " + ")}]</font>`);
+		parse(tmpData, `<font>Menu [${mod.settings.hotkey}]</font>`);
 	}
 
 	function useItem(id) {
