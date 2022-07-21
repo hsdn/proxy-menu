@@ -34,18 +34,13 @@ module.exports = function ProxyMenu(mod) {
 
 	mod.game.initialize("inventory");
 
-	Object.keys(menu.categories).forEach(category =>
-		Object.keys(menu.categories[category]).forEach(command => {
-			if (menu.categories[category][command].keybind) {
-				try {
-					globalShortcut.register(menu.categories[category][command].keybind, () =>
-						mod.command.exec(command)
-					);
-					keybinds.add(menu.categories[category][command].keybind);
-				} catch (e) {}
-			}
-		})
-	);
+	if (menu.pages !== undefined) {
+		Object.values(menu.pages).forEach(page =>
+			bindHotkeys(page)
+		);
+	}
+
+	bindHotkeys(menu.categories);
 
 	keybinds.add(mod.settings.hotkey);
 	globalShortcut.register(mod.settings.hotkey, () => show());
@@ -171,17 +166,23 @@ module.exports = function ProxyMenu(mod) {
 		"debug": () => {
 			debug = !debug;
 			mod.command.message(`Debug mode ${debug ? "enabled" : "disabled"}.`);
+		},
+		"$default": arg => {
+			if (arg[0] === "$") {
+				show(arg.slice(1));
+			}
 		}
 	});
 
-	function show() {
+	function show(page = null) {
+		const categories = menu?.pages[page] || menu.categories;
 		const tmpData = [];
-		Object.keys(menu.categories).forEach(category => {
+		Object.keys(categories).forEach(category => {
 			tmpData.push(
 				{ "text": `<font color="#cccccc" size="+22">${category}</font>` },
 				{ "text": "<br>" }
 			);
-			menu.categories[category].forEach(menuEntry => {
+			categories[category].forEach(menuEntry => {
 				if (menuEntry.class) {
 					const classes = (Array.isArray(menuEntry.class) ? menuEntry.class : [menuEntry.class]);
 					if (!classes.includes(mod.game.me.class)) {
@@ -200,7 +201,7 @@ module.exports = function ProxyMenu(mod) {
 				}
 				const commandParts = menuEntry.command.split(" ");
 				let available = mod.command.base.hooks.has(commandParts[0]);
-				if (commandParts[0].toLocaleLowerCase() === COMMAND && commandParts[1].toLocaleLowerCase() === "use") {
+				if (commandParts[0].toLocaleLowerCase() === COMMAND && commandParts[1] !== undefined && commandParts[1].toLocaleLowerCase() === "use") {
 					available = false;
 					const items = mod.game.inventory.findAll(parseInt(commandParts[2]));
 					if (items.length !== 0) {
@@ -229,9 +230,10 @@ module.exports = function ProxyMenu(mod) {
 				{ "text": "<font size=\"+2\"><br><br></font>" }
 			);
 		});
+		const command = page ? `${COMMAND} $${page}` : COMMAND;
 		tmpData.push(
 			{ "text": "<br>" },
-			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload proxy-menu; ${COMMAND}` },
+			{ "text": "<font color=\"#9966cc\" size=\"+15\">[Reload]</font>", "command": `proxy reload proxy-menu; ${command}` },
 			{ "text": "&nbsp;&nbsp;&nbsp;&nbsp;" },
 			{ "text": `<font color="#dddddd" size="+18">${moment().tz("Europe/Berlin").format("HH:mm z")} / ${moment().tz("Europe/Moscow").format("HH:mm z")}</font>` }
 		);
@@ -255,6 +257,21 @@ module.exports = function ProxyMenu(mod) {
 			"quest": parseInt(quest),
 			"instance": parseInt(instance)
 		});
+	}
+
+	function bindHotkeys(categories) {
+		Object.keys(categories).forEach(category =>
+			Object.keys(categories[category]).forEach(command => {
+				if (categories[category][command].keybind) {
+					try {
+						globalShortcut.register(categories[category][command].keybind, () =>
+							mod.command.exec(categories[category][command].command)
+						);
+						keybinds.add(categories[category][command].keybind);
+					} catch (e) {}
+				}
+			})
+		);
 	}
 
 	function parse(array, title) {
