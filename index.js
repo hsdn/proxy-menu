@@ -175,7 +175,7 @@ module.exports = function ProxyMenu(mod) {
 	});
 
 	function show(page = null) {
-		const categories = menu?.pages[page] || menu.categories;
+		const categories = menu.pages !== undefined && menu.pages[page] ? menu.pages[page] : menu.categories;
 		const tmpData = [];
 		Object.keys(categories).forEach(category => {
 			tmpData.push(
