@@ -4,7 +4,7 @@
         "index.js": "263a48c3d7afa286380ff2ca386d7acb385e4618c1ba0522aff8c2c4177d1d18",
         "menu.js": {
             "overwrite": false,
-            "hash": "8dd20b072dbb0f2499383a84d8e991cd1cc225fcd9eb453524ee5bd975fab802"
+            "hash": "d917bee47242e03a0e75561018c3ac097738f064819feac5df93c37373ceec14"
         },
         "module.json": "af265dd3caa82cc6ffb8d9e7e9cad38fb7c8a7d918c23a62f875c78e8571d447",
         "node_modules/moment-timezone/data/meta/latest.json": "1574fc70d8fd2554031aed90b1424371d6775bd9c0cab5cbd20e04753984f501",

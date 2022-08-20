@@ -76,16 +76,6 @@ module.exports.categories = {
 		// https://github.com/hsdn/gathering-markers
 		{ command: "gat ui", name: "Сбор", color: c.lb },
 	],
-	/*
-	"Гоблины эксодора (монеты странствий)": [
-		// [приват] Boss-Helper-NG (F)
-		{ command: "tr", name: "Время спавна", color: c.lb },
-		{ command: "tr scan", name: "Поиск", color: c.o },
-		{ command: "tr stop", name: "Стоп", color: c.r },
-		{ command: "tr loc", name: "Позиции", color: c.b },
-		{ command: "bh move", name: "Телепорт под моба", color: c.lg, ifcmd: "tr" },
-	],
-	*/
 	"Тайные торговцы": [
 		// https://github.com/hsdn/Boss-Helper
 		{ command: "mm", name: "Время спавна", color: c.lb },
@@ -121,15 +111,6 @@ module.exports.categories = {
 		{ command: "atlas tp 83001", name: "Блеклый камень", color: c.lg, ifcmd: "atlas" },
 		{ command: "m use 148", name: "Блеклый камень", color: c.lg, ifnocmd: "atlas" },
 	],
-	"Неуязвимость": [
-		// [приват] invincible-mode
-		{ command: "inv s", name: "Статус", color: c.lb },
-		{ command: "inv h 70", name: "70", color: c.y },
-		{ command: "inv h 150", name: "150", color: c.y },
-		{ command: "inv h 200", name: "200", color: c.y },
-		{ command: "inv h 300", name: "300", color: c.y },
-		{ command: "inv i", name: "Включить/Выключить", color: c.r },
-	],
 	"Гайд (tera-guide)": [
 		// https://github.com/hsdn/tera-guide
 		{ command: "guide ui", name: "Настройка" },
@@ -144,16 +125,6 @@ module.exports.categories = {
 		{ command: "tp up 500", name: "Блинк вверх" },
 		{ command: "tp down 250", name: "Блинк вниз" },
 		{ command: "tp drop -1", name: "Убить себя", color: c.r },
-		// [приват] super-sorc
-		{ command: "sorc ui", name: "Сорк", color: c.lb, class: "sorcerer" },
-		// [приват] super-braw
-		{ command: "braw ui", name: "Круш", color: c.lb, class: "fighter" },
-		// [приват] super-ninja
-		{ command: "ninj ui", name: "Шинка", color: c.lb, class: "assassin" },
-		// [приват] super-valkyrie
-		{ command: "valk ui", name: "Валька", color: c.lb, class: "glaiver" },
-		// [приват] mystic-bot
-		{ command: "mb ui", name: "Мист", color: c.lb, class: "elementalist" },
 	],
 };
 
