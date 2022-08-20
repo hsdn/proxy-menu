@@ -156,3 +156,7 @@ module.exports.categories = {
 		{ command: "mb ui", name: "Мист", color: c.lb, class: "elementalist" },
 	],
 };
+
+module.exports.pages = {
+
+};

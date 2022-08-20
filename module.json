@@ -10,7 +10,7 @@
         "settingsMigrator": "settings_migrator.js",
         "reloadable": true
     },
-    "servers": ["http://git.dev.hsdn.org/tera/proxy-menu/raw/master/"],
-    "version": "7/21/2022",
+    "servers": ["https://raw.githubusercontent.com/hsdn/proxy-menu/master/"],
+    "version": "8/20/2022",
     "disableAutoUpdate": false
 }
