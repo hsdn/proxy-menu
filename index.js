@@ -175,7 +175,7 @@ module.exports = function ProxyMenu(mod) {
 	});
 
 	function show(page = null) {
-		const categories = menu?.pages[page] || menu.categories;
+		const categories = menu.pages !== undefined && menu.pages[page] ? menu.pages[page] : menu.categories;
 		const tmpData = [];
 
 		if (page !== null) {
@@ -273,7 +273,7 @@ module.exports = function ProxyMenu(mod) {
 				if (categories[category][command].keybind) {
 					try {
 						globalShortcut.register(categories[category][command].keybind, () =>
-							mod.command.exec(command)
+							mod.command.exec(categories[category][command].command)
 						);
 						keybinds.add(categories[category][command].keybind);
 					} catch (e) {}
