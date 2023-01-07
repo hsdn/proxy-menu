@@ -90,7 +90,7 @@ module.exports = function ProxyMenu(mod) {
 	});
 
 	mod.hook("S_PREMIUM_SLOT_DATALIST", 2, { "order": Infinity, "filter": { "fake": null } }, event => {
-		if (!mod.settings.premiumSlotEnabled || menu.premium.length === 0) return;
+		if (!mod.settings.premiumSlotEnabled || menu.premium.length === 0 || event.sets.length === 0) return;
 		premiumAvailable = true;
 		menu.premium.forEach(slot => {
 			if (slot.class) {

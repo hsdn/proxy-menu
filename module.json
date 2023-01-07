@@ -11,6 +11,6 @@
         "reloadable": true
     },
     "servers": ["https://raw.githubusercontent.com/hsdn/proxy-menu/master/"],
-    "version": "8/21/2022",
+    "version": "1/7/2023",
     "disableAutoUpdate": false
 }
