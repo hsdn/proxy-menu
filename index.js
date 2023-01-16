@@ -301,8 +301,15 @@ module.exports = function ProxyMenu(mod) {
 		mod.send("S_ANNOUNCE_UPDATE_NOTIFICATION", 1, { "id": 0, title, body });
 	}
 
-	this.saveState = () => ({ player });
-	this.loadState = state => player = state.player;
+	this.saveState = () => ({
+		player,
+		premiumAvailable
+	});
+
+	this.loadState = state => {
+		player = state.player;
+		premiumAvailable = state.premiumAvailable;
+	};
 
 	this.destructor = () => {
 		keybinds.forEach(keybind => globalShortcut.unregister(keybind));
